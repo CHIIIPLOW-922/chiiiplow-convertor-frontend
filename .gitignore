@@ -142,3 +142,10 @@ vite.config.ts.timestamp-*
 **/.idea
 **/.vscode
 **/node_modules
+auto-imports.d.ts
+
+components.d.ts
+
+dist/
+
+.vite/
