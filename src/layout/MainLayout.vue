@@ -18,6 +18,8 @@
         <div class="flex-1 overflow-auto p-4">
             <router-view />
         </div>
+
+        <!-- <div class="bottom flex-1"></div> -->
     </div>
 </template>
 

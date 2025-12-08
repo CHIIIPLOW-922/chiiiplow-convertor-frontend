@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <n-config-provider :locale="enUS" :theme-overrides="themeOverrides">
+    <n-config-provider :locale="enUS" :theme="isDark ? darkTheme : null">
       <n-message-provider>
         <n-dialog-provider>
           <RouterView />
@@ -13,15 +13,11 @@
 
 
 <script setup>
-import { enUS } from 'naive-ui';
-const themeOverrides = {
-  common: {
-    primaryColor: '#5882FA',        // ✅ 主色（亚马逊橙）
-    primaryColorHover: '#ffad33',
-    primaryColorPressed: '#e68a00',
-    primaryColorSuppl: '#ff9900'
-  }
-}
+import { enUS, darkTheme } from 'naive-ui';
+// import theme from '@/constant/theme-custom';
+import { useTheme } from '@/utils/useTheme';
+
+const { isDark } = useTheme();
 </script>
 
 <style>

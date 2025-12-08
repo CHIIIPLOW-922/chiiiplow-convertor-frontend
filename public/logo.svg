@@ -1,0 +1,37 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 活力渐变背景 -->
+    <linearGradient id="vibrantBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4FA3FF"/>
+      <stop offset="100%" stop-color="#FF9F4F"/>
+    </linearGradient>
+
+    <!-- 内部橙色渐变 -->
+    <linearGradient id="orangeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF9900"/>
+      <stop offset="100%" stop-color="#FFB84D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景正方形圆角 -->
+  <rect width="200" height="200" rx="32" fill="url(#vibrantBg)"/>
+
+  <!-- 占满正方形的现代抽象流线 -->
+  <path d="M20 50
+           C80 30, 160 40, 180 90
+           C150 60, 140 150, 50 160
+           C70 120, 120 140, 160 110" 
+        fill="url(#orangeGrad)" filter="url(#shadow)"/>
+
+  <!-- 流线箭头元素，实色浅橙 -->
+  <path d="M40 90 C90 70, 140 110, 160 80" stroke="#FFD580" stroke-width="6" stroke-linecap="round"/>
+  <path d="M50 110 C100 90, 150 130, 170 100" stroke="#FFD580" stroke-width="4" stroke-linecap="round"/>
+  <path d="M30 120 C80 100, 130 140, 150 110" stroke="#FFD580" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- 阴影效果 -->
+  <defs>
+    <filter id="shadow" x="0" y="0" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+</svg>

@@ -5,21 +5,21 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('@/layout/MainLayout.vue'), // 下一步创建
+      component: () => import('@/layout/MainLayout.vue'),
       children: [
         {
-          path: '', // 首页
-          component: () => import('@/views/Home.vue') // 下一步创建
+          path: '', // Home page
+          component: () => import('@/views/Home.vue')
         }
       ]
     },
-    // 2. 登录页 (独立布局)
+    // 2. login
     {
       path: '/login',
       name: 'Login',
       component: () => import('@/views/Login.vue')
     },
-    // 3. 注册页 (独立布局)
+    // 3.register
     {
       path: '/register',
       name: 'Register',
