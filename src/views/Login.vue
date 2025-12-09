@@ -2,9 +2,9 @@
     <div class="login flex app-theme flex-col h-screen w-screen items-center justify-center overflow-hidden">
         <theme-switch class="theme-switch self-start pt-[15px] pr-[15px] xl:pt-[30px] xl:pr-[30px] mb-auto ml-auto"></theme-switch>
         <div class="login-container flex flex-row items-center justify-center mb-auto">
-            <n-image class="login-logo hidden max-h-[350px] xl:flex mr-30" :src="loginSvg" :preview-disabled="!0"></n-image>
+            <n-image class="login-logo hidden max-h-[350px] xl:flex mr-15" :src="loginSvg" :preview-disabled="!0"></n-image>
             <div class="login-form-d min-w-[650px]">
-                <n-form class="login-form w-fit min-w-[400px] ml-auto mr-auto xl:ml-0">
+                <n-form class="login-form w-fit ml-auto mr-auto min-w-[var(--login-min-width)] xl:ml-0" :style="{'--login-min-width': windowWidth < 400 ? (windowWidth - 10) + 'px' : '400px'}">
                     <n-text class="text-2xl font-bold mb-4 text-center">Login</n-text>
                     <n-form-item label="Username / Email">
                         <n-input placeholder="please input username or email" />
@@ -22,9 +22,10 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import ThemeSwitch from '@/components/ThemeSwitch.vue'
-import loginSvg from '@/assets/elements/dataOfWork.svg'
+import loginSvg from '@/assets/elements/dataOfWork.svg';
+import ThemeSwitch from '@/components/ThemeSwitch.vue';
+import { reactive, ref } from 'vue';
+const windowWidth = ref(window.innerWidth)
 const rules = {
     email: [
         { required: true, message: '请输入邮箱', trigger: 'blur' },
