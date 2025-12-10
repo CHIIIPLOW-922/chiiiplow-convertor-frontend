@@ -1,20 +1,20 @@
 <template>
-    <n-switch class="w-[40px] h-[40px]" v-model:value="isDark" size="large">
+    <n-switch class="w-[46px]" v-model:value="isDark">
         <template #unchecked>
-            <n-icon size="13" :depth="2" :component="Sunny">
+            <n-icon size="15" :depth="2" :component="Sunny">
             </n-icon>
         </template>
 
         <template #checked>
-            <n-icon size="13" :depth="2" :component="Moon">
+            <n-icon size="15" :depth="2" :component="Moon">
             </n-icon>
         </template>
     </n-switch>
 </template>
 
 <script setup>
-import { useDarkTheme } from '@/utils/useDarkTheme'
-import { Sunny, Moon } from '@vicons/ionicons5'
+import { useDarkTheme } from '@/utils/useDarkTheme';
+import { Moon, Sunny } from '@vicons/ionicons5';
 const { isDark } = useDarkTheme()
 
 </script>
