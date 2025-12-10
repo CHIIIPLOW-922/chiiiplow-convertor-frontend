@@ -2,7 +2,7 @@ import { ref, watch } from 'vue'
 
 const isDark = ref(localStorage.getItem('theme') === 'dark')
 
-export function useTheme() {
+export function useDarkTheme() {
   document.documentElement.classList.toggle('dark', isDark.value)
 
   watch(isDark, (val) => {

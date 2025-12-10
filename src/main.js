@@ -10,8 +10,9 @@ import 'virtual:uno.css'
 import 'vfonts/Lato.css'
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(createPinia())
+app.use(pinia)
 app.use(router)
 
 

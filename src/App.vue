@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <n-config-provider :locale="enUS" :theme="isDark ? darkTheme : null">
+    <n-config-provider :locale="enUS" :theme="isDark ? darkTheme : null" :theme-overrides="themeOverrides">
       <n-message-provider>
         <n-dialog-provider>
           <RouterView />
@@ -14,10 +14,10 @@
 
 <script setup>
 import { enUS, darkTheme } from 'naive-ui';
-// import theme from '@/constant/theme-custom';
-import { useTheme } from '@/utils/useTheme';
-
-const { isDark } = useTheme();
+import { useDarkTheme } from '@/utils/useDarkTheme';
+import { customColorTheme } from '@/utils/customColorTheme';
+const { isDark } = useDarkTheme();
+const { themeOverrides } = customColorTheme()
 </script>
 
 <style>
