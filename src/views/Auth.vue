@@ -1,12 +1,11 @@
 <template>
-    <div class="login flex app-theme flex-col h-screen w-screen items-center justify-center overflow-hidden">
-        <div class="login-header flex justify-around gap-3 items-center self-start pt-[15px] pr-[15px] xl:pt-[30px] xl:pr-[30px] mb-auto ml-auto">
+    <div class="auth flex app-theme flex-col h-screen w-screen items-center justify-center overflow-hidden">
+        <div class="auth-header flex justify-around gap-4 items-center self-start pt-[15px] pr-[15px] xl:pt-[30px] xl:pr-[30px] mb-auto ml-auto">
             <color-picker class="color-picker "></color-picker>
             <theme-switch class="theme-switch "></theme-switch>
         </div>
-        <div class="login-container flex flex-row items-center justify-center mb-auto">
-            <n-image class="login-logo hidden max-h-[350px] xl:flex mr-15" :src="loginSvg"
-                :preview-disabled="!0"></n-image>
+        <div class="auth-container flex flex-row items-center justify-center mb-auto">
+            <n-image class="auth-logo hidden max-h-[350px] xl:flex mr-15" :src="loginSvg" :preview-disabled="!0"></n-image>
             <transition name="fade-slide" mode="out-in">
                 <!-- Login form -->
                 <div class="login-form-d min-w-[650px]" v-if="isLogin">
