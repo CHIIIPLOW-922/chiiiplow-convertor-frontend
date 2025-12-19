@@ -27,8 +27,9 @@ service.interceptors.response.use(
         return response;
     },
     (error) => {
+        console.log(error)
         loadingBar.error();
-        message.error(error.detail);
+        message.error(error.response.data.detail);
         return Promise.reject("business error");
     }
 )
@@ -62,7 +63,7 @@ class HttpClient {
         }
         let headers = {
             'Content-Type': contentType,
-            'X-Requested-With': 'XMLHttpRequest',
+            // 'X-Requested-With': 'XMLHttpRequest',
         }
 
 

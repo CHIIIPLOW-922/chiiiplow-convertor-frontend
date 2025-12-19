@@ -11,7 +11,7 @@
                 <div class="login-form-d min-w-[650px]" v-if="isLogin">
                     <n-form class="login-form w-fit ml-auto mr-auto min-w-[var(--login-min-width)] xl:ml-0"
                         :style="{ '--login-min-width': windowWidth < 350 ? (windowWidth - 20) + 'px' : '350px' }">
-                        <n-text class="text-2xl font-bold">Login</n-text>
+                        <n-text class="text-2xl font-bold flex mb-[10px] text-center">Login</n-text>
                         <n-form-item label="Username / Email">
                             <n-input placeholder="please input username or email" />
                         </n-form-item>
@@ -28,17 +28,20 @@
                 </div>
                 <!-- Register form -->
                 <div class="register-form-d min-w-[650px]" v-else>
-                    <n-form class="register-form w-fit ml-auto mr-auto min-w-[var(--register-min-width)] xl:ml-0"
+                    <n-form v-model="registerForm" class="register-form w-fit ml-auto mr-auto min-w-[var(--register-min-width)] xl:ml-0"
                         :style="{ '--register-min-width': windowWidth < 350 ? (windowWidth - 20) + 'px' : '350px' }">
-                        <n-text class="text-2xl font-bold mb-4 text-center">Register</n-text>
+                        <n-text class="text-2xl font-bold flex mb-[10px] text-center">Register</n-text>
+
                         <n-form-item label="Email">
-                            <n-input placeholder="please input email" />
+                            <n-input v-model.trim="registerForm.email" clearable placeholder="please input email" />
                         </n-form-item>
+
                         <n-form-item label="Password">
-                            <n-input type="password" placeholder="please input password" />
+                            <n-input v-model.trim="registerForm.password" clearable show-password-on="click" type="password" placeholder="please input password" />
                         </n-form-item>
+
                         <n-form-item label="VerifyCode">
-                            <n-input placeholder="please input verify code">
+                            <n-input placeholder="please input verify code" v-model.trim="registerForm.code">
                                 <template #suffix>
                                     <n-button size="large" text :disabled="countdown > 0" @click="sendCode">
                                         {{ countdown > 0 ? `${countdown}s` : 'Send' }}
@@ -46,9 +49,11 @@
                                 </template>
                             </n-input>
                         </n-form-item>
+
                         <n-form-item>
                             <n-button type="primary" class="w-full">Sign up</n-button>
                         </n-form-item>
+
                         <n-form-item>
                             <n-button type="info" class="w-full" @click="isLogin = !0">Go to login →</n-button>
                         </n-form-item>
@@ -69,24 +74,16 @@ import user from '@/api/user';
 const message = useMessage()
 const windowWidth = computed(() => window.innerWidth)
 const isLogin = ref(true)
-const code = ref('')
+const registerForm = ref({})
+const loginForm = ref({})
 const countdown = ref(0)
-const email = '641484973@qq.com'
-const rules = {
-    email: [
-        { required: true, message: '请输入邮箱', trigger: 'blur' },
-        { type: 'email', message: '邮箱格式不正确', trigger: 'blur' }
-    ],
-    password: [
-        { required: true, message: '请输入密码', trigger: 'blur' },
-        { min: 6, message: '密码长度不能少于6位', trigger: 'blur' }
-    ]
-}
 
 
 const sendCode = () => {
-    user.sendCode2Email({email})
-    message.success("success")
+    let timer
+    let countdown
+    console.log(registerForm.value)
+    user.sendCode2Email(registerForm.value)
     countdown.value = 60
     timer = setInterval(() => {
         countdown.value--
@@ -94,11 +91,6 @@ const sendCode = () => {
     }, 1000)
 }
 
-const loading = ref(false)
-const model = reactive({
-    email: '',
-    password: ''
-})
 </script>
 
 <style lang="scss">
