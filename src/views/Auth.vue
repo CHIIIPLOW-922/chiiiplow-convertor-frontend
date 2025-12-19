@@ -31,11 +31,20 @@
                     <n-form class="register-form w-fit ml-auto mr-auto min-w-[var(--register-min-width)] xl:ml-0"
                         :style="{ '--register-min-width': windowWidth < 350 ? (windowWidth - 20) + 'px' : '350px' }">
                         <n-text class="text-2xl font-bold mb-4 text-center">Register</n-text>
-                        <n-form-item label="Username / Email">
-                            <n-input placeholder="please input username or email" />
+                        <n-form-item label="Email">
+                            <n-input placeholder="please input email" />
                         </n-form-item>
                         <n-form-item label="Password">
                             <n-input type="password" placeholder="please input password" />
+                        </n-form-item>
+                        <n-form-item label="VerifyCode">
+                            <n-input placeholder="please input verify code">
+                                <template #suffix>
+                                    <n-button size="large" text :disabled="countdown > 0" @click="sendCode">
+                                        {{ countdown > 0 ? `${countdown}s` : 'Send' }}
+                                    </n-button>
+                                </template>
+                            </n-input>
                         </n-form-item>
                         <n-form-item>
                             <n-button type="primary" class="w-full">Sign up</n-button>
@@ -55,8 +64,14 @@ import loginSvg from '@/assets/elements/dataOfWork.svg';
 import ThemeSwitch from '@/components/ThemeSwitch.vue';
 import ColorPicker from '@/components/ColorPicker.vue';
 import { computed, reactive, ref } from 'vue';
+import { useMessage } from 'naive-ui';
+import user from '@/api/user';
+const message = useMessage()
 const windowWidth = computed(() => window.innerWidth)
 const isLogin = ref(true)
+const code = ref('')
+const countdown = ref(0)
+const email = '641484973@qq.com'
 const rules = {
     email: [
         { required: true, message: '请输入邮箱', trigger: 'blur' },
@@ -66,6 +81,17 @@ const rules = {
         { required: true, message: '请输入密码', trigger: 'blur' },
         { min: 6, message: '密码长度不能少于6位', trigger: 'blur' }
     ]
+}
+
+
+const sendCode = () => {
+    user.sendCode2Email({email})
+    message.success("success")
+    countdown.value = 60
+    timer = setInterval(() => {
+        countdown.value--
+        if (countdown.value === 0) clearInterval(timer)
+    }, 1000)
 }
 
 const loading = ref(false)
