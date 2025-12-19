@@ -4,7 +4,7 @@ import { createDiscreteApi } from "naive-ui";
 const {message, loadingBar} = createDiscreteApi(["message", "loadingBar"])
 
 const service = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://chiiiplow.shop/api',
+    baseURL: '/api',
     timeout: 10000,
 })
 
